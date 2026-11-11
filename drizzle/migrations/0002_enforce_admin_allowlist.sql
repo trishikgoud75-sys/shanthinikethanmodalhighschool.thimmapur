@@ -1,0 +1,13 @@
+DO $$ DECLARE p record; BEGIN FOR p IN SELECT schemaname,tablename,policyname FROM pg_policies WHERE schemaname='public' AND tablename IN ('events','faculty','gallery_images','gallery_albums','leadership','site_content','notices') AND (coalesce(qual,'') LIKE '%has_role%' OR coalesce(with_check,'') LIKE '%has_role%') LOOP EXECUTE format('DROP POLICY %I ON %I.%I',p.policyname,p.schemaname,p.tablename); END LOOP; END $$;
+CREATE POLICY "public read events" ON public.events FOR SELECT TO anon,authenticated USING (true);
+CREATE POLICY "public read faculty" ON public.faculty FOR SELECT TO anon,authenticated USING (true);
+CREATE POLICY "public read gallery photos" ON public.gallery_images FOR SELECT TO anon,authenticated USING (true);
+CREATE POLICY "public read leadership" ON public.leadership FOR SELECT TO anon,authenticated USING (true);
+CREATE POLICY "public read notices" ON public.notices FOR SELECT TO anon,authenticated USING (true);
+CREATE POLICY "public read site content" ON public.site_content FOR SELECT TO anon,authenticated USING (true);
+GRANT SELECT ON public.events,public.faculty,public.gallery_images,public.gallery_albums,public.leadership,public.site_content,public.notices TO anon;
+GRANT SELECT,INSERT,UPDATE,DELETE ON public.events,public.faculty,public.gallery_images,public.gallery_albums,public.leadership,public.site_content,public.notices,public.fees TO authenticated;
+DROP POLICY "Admins can upload school media" ON storage.objects;
+DROP POLICY "Admins can update school media" ON storage.objects;
+DROP POLICY "Admins can delete school media" ON storage.objects;
+ALTER POLICY "admin emails update media" ON storage.objects WITH CHECK (bucket_id='school-media' AND public.is_admin());

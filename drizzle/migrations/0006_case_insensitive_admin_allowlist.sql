@@ -1,0 +1,1 @@
+CREATE OR REPLACE FUNCTION public.is_admin() RETURNS boolean LANGUAGE sql STABLE SECURITY DEFINER SET search_path = public AS $$ SELECT auth.uid() IS NOT NULL AND EXISTS (SELECT 1 FROM public.admins WHERE lower(email) = lower(coalesce(auth.jwt() ->> 'email', ''))) $$;

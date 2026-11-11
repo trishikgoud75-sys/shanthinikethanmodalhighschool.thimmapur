@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1793177500255,
+      "tag": "0000_migration",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793432002276,
+      "tag": "0001_admins_and_fees",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1793595172643,
+      "tag": "0002_enforce_admin_allowlist",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1793859073632,
+      "tag": "0003_create_admission_enquiries",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1793944866606,
+      "tag": "0004_deprecate_admission_applications",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794230143907,
+      "tag": "0005_create_feedback",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794294500476,
+      "tag": "0006_case_insensitive_admin_allowlist",
+      "breakpoints": true
+    }
+  ]
+}

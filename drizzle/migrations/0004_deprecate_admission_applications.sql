@@ -1,0 +1,1 @@
+COMMENT ON TABLE public.admission_applications IS 'DEPRECATED: replaced by admission_enquiries';
